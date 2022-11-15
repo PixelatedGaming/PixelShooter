@@ -19,6 +19,7 @@ import Play from '../screens/Play';
 import Store from '../screens/Store';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import Credits from '../screens/Credits';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -62,6 +63,10 @@ function RootNavigator() {
       <Stack.Screen
         name="Store"
         component={Store}
+      />
+       <Stack.Screen
+        name="Credits"
+        component={Credits}
       />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>

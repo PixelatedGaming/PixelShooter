@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 export default function Store() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Store</Text>
+      <Text style={styles.title}>By Walker and Manny</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>
   );

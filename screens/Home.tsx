@@ -4,15 +4,17 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
-
       <Text style={styles.title}>
         PixelShooter 2D
       </Text>
-      <Button title="Start" />
-      {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
+      <Button title="Store" onPress={() => navigation.navigate('Store')}/>
+      <Button title="Leaderboard"  onPress={() => navigation.navigate('Leaderboard')}/>
+      {/* Add PLayer Sprite Selector */}
+      <Button title="Play"  onPress={() => navigation.navigate('Play')}/>
+      <Button title="Credits"  onPress={() => navigation.navigate('Credits')}/>
     </View>
   );
 }
