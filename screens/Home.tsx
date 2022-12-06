@@ -1,6 +1,7 @@
 import { StyleSheet, ImageBackground, Button } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
+import PlayerSelector from '../components/PlayerSelector';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
@@ -12,7 +13,9 @@ export default function Home({ navigation }) {
       </Text>
       <Button title="Store" onPress={() => navigation.navigate('Store')}/>
       <Button title="Leaderboard"  onPress={() => navigation.navigate('Leaderboard')}/>
-      {/* Add PLayer Sprite Selector */}
+      
+      <PlayerSelector/>
+      
       <Button title="Play"  onPress={() => navigation.navigate('Play')}/>
       <Button title="Credits"  onPress={() => navigation.navigate('Credits')}/>
     </View>

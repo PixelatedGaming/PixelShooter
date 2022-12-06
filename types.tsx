@@ -18,6 +18,7 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Home: undefined;
+  Play: undefined;
   Credits: undefined;
   Store: undefined;
   Leaderboard: undefined;

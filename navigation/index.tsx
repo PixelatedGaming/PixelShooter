@@ -20,6 +20,7 @@ import Store from '../screens/Store';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import Credits from '../screens/Credits';
+import Leaderboard from '../screens/Leaderboard';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -38,6 +39,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const theme = useColorScheme();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -52,6 +54,7 @@ function RootNavigator() {
                 opacity: pressed ? 0.5 : 1,
               })}>
               <FontAwesome
+                color={theme === 'dark' ? Colors.dark.tint : Colors.light.tint}
                 name="info-circle"
                 size={25}
                 style={{ marginRight: 15 }}
@@ -63,6 +66,14 @@ function RootNavigator() {
       <Stack.Screen
         name="Store"
         component={Store}
+      />
+      <Stack.Screen
+        name="Leaderboard"
+        component={Leaderboard}
+      />
+      <Stack.Screen
+        name="Play"
+        component={Play}
       />
        <Stack.Screen
         name="Credits"
