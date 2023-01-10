@@ -8,9 +8,11 @@ import { RootTabScreenProps } from '../types';
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
+
       <Text style={styles.title}>
         PixelShooter 2D
       </Text>
+      
       <Button title="Store" onPress={() => navigation.navigate('Store')}/>
       <Button title="Leaderboard"  onPress={() => navigation.navigate('Leaderboard')}/>
       
