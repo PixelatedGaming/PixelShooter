@@ -1,30 +1,37 @@
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text, 
+  StyleSheet
+} from 'react-native';
+import PlayerSelector from '../components/PlayerSelector';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-
-export default function Play() {
+const Play = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Play</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 24,
+    backgroundColor: '#eaeaea',
   },
   title: {
-    fontSize: 20,
+    marginTop: 16,
+    paddingVertical: 8,
+    borderWidth: 4,
+    borderColor: '#20232a',
+    borderRadius: 6,
+    backgroundColor: '#61dafb',
+    color: '#20232a',
+    textAlign: 'center',
+    fontSize: 30,
     fontWeight: 'bold',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
 });
+
+export default Play;
