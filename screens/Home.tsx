@@ -3,7 +3,6 @@ import { StyleSheet, ImageBackground, Button } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import PlayerSelector from '../components/PlayerSelector';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
 
 export default function Home({ navigation }) {
   return (
