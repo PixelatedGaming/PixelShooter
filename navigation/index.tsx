@@ -74,6 +74,10 @@ function RootNavigator() {
       <Stack.Screen
         name="Play"
         component={Play}
+        options={() => ({
+          orientation: "landscape"
+        })}
+
       />
        <Stack.Screen
         name="Credits"

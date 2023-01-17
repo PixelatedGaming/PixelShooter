@@ -2,23 +2,76 @@ import React from 'react';
 import {
   View,
   Text, 
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native';
-import PlayerSelector from '../components/PlayerSelector';
+
+const windowDimensions = Dimensions.get('window');
+const screenDimensions = Dimensions.get('screen');
 
 const Play = () => {
+  function isLandscape() {
+    const dim = screenDimensions
+    return dim.width >= dim.height
+  }
+
+  const [dimensions, setDimensions] = React.useState({
+    window: windowDimensions,
+    screen: screenDimensions,
+  });
+
+  React.useEffect(() => {isLandscape()}, [dimensions])
+
+  React.useEffect(() => {
+
+    const subscription = Dimensions.addEventListener(
+      'change',
+      ({window, screen}) => {
+        setDimensions({window, screen});
+      },
+    );
+
+    return () => subscription?.remove();
+  });
+
+
+  
+
   return (
     <View style={styles.container}>
+      {isLandscape() ?
+      <>
       <Text style={styles.title}>Play</Text>
+      <Text style={styles.header}>Window Dimensions</Text>
+      {Object.entries(dimensions.window).map(([key, value]) => (
+        <Text>
+          {key} - {value}
+        </Text>
+      ))}
+      <Text style={styles.header}>Screen Dimensions</Text>
+      {Object.entries(dimensions.screen).map(([key, value]) => (
+        <Text>
+          {key} - {value}
+        </Text>
+      ))}
+      </>
+      :
+      <Text> youre not in landscape {isLandscape().toString()}</Text>
+      }
+      
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     padding: 24,
     backgroundColor: '#eaeaea',
+  },
+  header: {
+    fontSize: 16,
+    marginVertical: 10,
   },
   title: {
     marginTop: 16,
