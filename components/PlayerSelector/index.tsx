@@ -1,62 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import { StyleSheet, ImageBackground, Pressable, Image } from 'react-native';
-import PlayerOneGif from '../../assets/gifs/Player_One_Idle.gif'
 import Colors from '../../constants/Colors';
 import { Text, View } from '../Themed';
 
-const PlayerOneGifUri = Image.resolveAssetSource(PlayerOneGif).uri
+
+const AllSprites = [
+    require('../../assets/gifs/Player_One_Idle.gif'),
+    require('../../assets/gifs/Player_Two_Idle.gif')
+
+]
+
+const AllSpriteNames = [
+    'Jake da Shooter',
+    'Ella Criengo',
+    'Olivia Cura'
+]
 
 
 export default function PlayerSelector() {
-    let [sprite, setSprite] = React.useState(0);
+    let [sprite, setSprite] = useState(0);
+    const [loading, setLoading] = useState(false);
 
-    function handleHelpPress() {
-        setSprite(sprite++)
-
-        // WebBrowser.openBrowserAsync(
-        //     'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
-        // );
+    function handleRight() {
+        setLoading(true)
+        if (!AllSprites[sprite + 1]) {
+            setSprite(0)
+            setLoading(false)
+        } else {
+            setSprite(current => current + 1)
+            setLoading(false)
+        }
     }
+
+    function handleLeft() {
+        setLoading(true)
+        if (!AllSprites[sprite - 1]) {
+            setSprite(0)
+            setLoading(false)
+        } else {
+            setSprite(current => current - 1)
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+
+    }, [sprite])
 
     return (
         <View style={styles.playerSelectorContainer}>
-            <ImageBackground
-                source={{ uri: PlayerOneGifUri }}
-                resizeMode="cover"
-                style={styles.image}
-            >
-                <Text
-                    style={styles.helpLinkText}
-                    lightColor={Colors.light.tint}
+
+            {!loading &&
+                <ImageBackground
+                    source={{ uri: Image.resolveAssetSource(AllSprites[sprite]).uri }}
+                    resizeMode="cover"
+                    style={styles.image}
                 >
-                    Current Sprite is: Deez Nuts!
-                </Text>
+                    <Text
+                        style={styles.helpLinkText}
+                        lightColor={Colors.light.tint}
+                    >
+                        Current Sprite is: {AllSpriteNames[sprite]}
+                    </Text>
 
 
-
-
-                <View style={styles.selector}>
-                <Pressable onPress={handleHelpPress} 
-                style={styles.helpLink}>
+                </ImageBackground>
+            }
+            <View style={styles.selector}>
+                <Pressable onPress={handleLeft}
+                    style={styles.helpLink}>
                     <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
                         {'< '}
                     </Text>
                 </Pressable>
 
-                <Pressable onPress={handleHelpPress} 
-                style={styles.helpLink}>
+                <Pressable onPress={handleRight}
+                    style={styles.helpLink}>
                     <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
                         {' >'}
                     </Text>
                 </Pressable>
             </View>
-
-
-
-
-            </ImageBackground>
-
         </View>
     );
 }
@@ -104,10 +129,10 @@ const styles = StyleSheet.create({
     selector: {
         flexDirection: 'row',
         justifyContent: 'center',
-        margin: '25%'
+        // margin: '25%'
     },
     image: {
-        // height: '70%'
+        maxHeight: '100%'
     },
     playerSelectorContainer: {
         margin: 0,
