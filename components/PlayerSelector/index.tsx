@@ -17,7 +17,6 @@ const AllSpriteNames = [
     'Olivia Cura'
 ]
 
-
 export default function PlayerSelector() {
     let [sprite, setSprite] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -44,21 +43,17 @@ export default function PlayerSelector() {
         }
     }
 
-    useEffect(() => {
-
-    }, [sprite])
-
     return (
         <View style={styles.playerSelectorContainer}>
 
             {!loading &&
                 <ImageBackground
                     source={{ uri: Image.resolveAssetSource(AllSprites[sprite]).uri }}
-                    resizeMode="cover"
+                    // resizeMode="cover"
                     style={styles.image}
                 >
                     <Text
-                        style={styles.helpLinkText}
+                        style={[styles.helpLinkText, { marginTop: 175 }]}
                         lightColor={Colors.light.tint}
                     >
                         Current Sprite is: {AllSpriteNames[sprite]}
@@ -67,16 +62,17 @@ export default function PlayerSelector() {
 
                 </ImageBackground>
             }
+
             <View style={styles.selector}>
                 <Pressable onPress={handleLeft}
-                    style={styles.helpLink}>
+                    style={[styles.helpLink, { margin: 1 }]}>
                     <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
                         {'< '}
                     </Text>
                 </Pressable>
 
                 <Pressable onPress={handleRight}
-                    style={styles.helpLink}>
+                    style={[styles.helpLink, { margin: 1 }]}>
                     <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
                         {' >'}
                     </Text>
@@ -117,7 +113,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         // paddingTop: 100,
         padding: 10,
-        margin: 10,
+        marginTop: 50,
         backgroundColor: 'green'
     },
     playerSpriteCanvas: {
@@ -129,13 +125,15 @@ const styles = StyleSheet.create({
     selector: {
         flexDirection: 'row',
         justifyContent: 'center',
-        // margin: '25%'
+        paddingBottom: 0
     },
     image: {
-        maxHeight: '100%'
+        maxHeight: 300,
+        height: 250
     },
     playerSelectorContainer: {
         margin: 0,
-        padding: 0
+        padding: 0,
+        // height: 300
     }
 });

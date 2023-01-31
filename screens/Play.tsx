@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   View,
-  Text, 
+  Text,
   StyleSheet,
   Dimensions
 } from 'react-native';
@@ -10,6 +10,8 @@ const windowDimensions = Dimensions.get('window');
 const screenDimensions = Dimensions.get('screen');
 
 const Play = () => {
+  const [playable, setPLayable] = React.useState(false);
+
   function isLandscape() {
     const dim = screenDimensions
     return dim.width >= dim.height
@@ -20,45 +22,50 @@ const Play = () => {
     screen: screenDimensions,
   });
 
-  React.useEffect(() => {isLandscape()}, [dimensions])
+  React.useEffect(() => {
+    console.log('DATATATATTATATATTATAT')
+    isLandscape()
+    return () => { setPLayable(isLandscape()) }
+  }, [dimensions])
 
   React.useEffect(() => {
-
     const subscription = Dimensions.addEventListener(
       'change',
-      ({window, screen}) => {
-        setDimensions({window, screen});
+      ({ window, screen }) => {
+        setDimensions({ window, screen });
       },
     );
 
     return () => subscription?.remove();
   });
 
-
-  
-
   return (
     <View style={styles.container}>
-      {isLandscape() ?
-      <>
-      <Text style={styles.title}>Play</Text>
-      <Text style={styles.header}>Window Dimensions</Text>
-      {Object.entries(dimensions.window).map(([key, value]) => (
-        <Text>
-          {key} - {value}
-        </Text>
-      ))}
-      <Text style={styles.header}>Screen Dimensions</Text>
-      {Object.entries(dimensions.screen).map(([key, value]) => (
-        <Text>
-          {key} - {value}
-        </Text>
-      ))}
-      </>
-      :
-      <Text> youre not in landscape {isLandscape().toString()}</Text>
+      {playable ?
+        <>
+          {/* <Text style={styles.title}>Play</Text> */}
+          {/* Joy stick */}
+          {/* Player Sprite */}
+          {/* Shoot Button */}
+
+          <Text style={styles.header}>Window Dimensions</Text>
+          {Object.entries(dimensions.window).map(([key, value]) => (
+            <Text>
+              "Balls"
+            </Text>
+          ))}
+
+          <Text style={styles.header}>Screen Dimensions</Text>
+          {Object.entries(dimensions.screen).map(([key, value]) => (
+            <Text>
+              "Balls"
+            </Text>
+          ))}
+        </>
+        :
+        <Text> youre not in landscape {playable.toString()}</Text>
       }
-      
+
     </View>
   )
 }
