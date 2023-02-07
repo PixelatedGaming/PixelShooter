@@ -7,8 +7,8 @@ import { Text, View } from '../Themed';
 
 const AllSprites = [
     require('../../assets/gifs/Player_One_Idle.gif'),
-    require('../../assets/gifs/Player_Two_Idle.gif')
-
+    require('../../assets/gifs/Player_Two_Idle.gif'),
+    require('../../assets/gifs/Player_Three_Idle.gif')
 ]
 
 const AllSpriteNames = [
