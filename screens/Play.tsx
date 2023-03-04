@@ -6,14 +6,13 @@ import {
 import { WebView } from 'react-native-webview';
 
 export default function PlayScreen() {
-
   return (
     <View style={{ flex: 1 }}>
       <WebView
         source={{
           uri: 'https://elmarti.github.io/react-joystick-component/?path=/story/joystick-examples--default-joystick',
         }}
-        style={{marginTop: 20}}
+        style={{ marginTop: 20 }}
       />
     </View >
   );
