@@ -11,7 +11,7 @@ const COLORS = ["#86E9BE", "#8DE986", "#B8E986", "#E9E986"];
 const BORDER_COLORS = ["#C0F3DD", "#C4F6C0", "#E5FCCD", "#FCFDC1"];
 
 class Worm extends PureComponent {
-  constructor(props) {
+  constructor(props: {} | Readonly<{}>) {
     super(props);
     this.state = {
       ready: false
@@ -37,8 +37,8 @@ class Worm extends PureComponent {
             { left: x, top: y },
             { left: x, top: y }
           ]}
-          styles={prevInterpolatedStyles =>
-            prevInterpolatedStyles.map((_, i) => {
+          styles={(prevInterpolatedStyles: any[]) =>
+            prevInterpolatedStyles.map((_: any, i: number) => {
               return i === 0
                 ? {
                     left: spring(x),
@@ -54,11 +54,11 @@ class Worm extends PureComponent {
                   };
             })}
         >
-          {interpolatingStyles => (
+          {(interpolatingStyles: any[]) => (
             <View
               style={css.anchor}
             >
-              {interpolatingStyles.map((style, i) => (
+              {interpolatingStyles.map((style: { left: any; top: any; }, i: React.Key | null | undefined) => (
                 <View
                   key={i}
                   style={[

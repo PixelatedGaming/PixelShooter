@@ -1,10 +1,8 @@
-import { StyleSheet, ImageBackground, Button, TouchableOpacity } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { StyleSheet, Button, TouchableOpacity } from 'react-native';
 import PlayerSelector from '../components/PlayerSelector';
 import { Text, View } from '../components/Themed';
 
-export default function Home({ navigation }) {
+export default function Home({ navigation }: any) {
   return (
     <View style={styles.container}>
 

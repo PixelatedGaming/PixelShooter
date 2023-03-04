@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../react-native-game-engine-handbook"
+		},
+		{
+			"path": "../../../react-native-game-engine-template"
+		}
+	],
+	"settings": {}
+}

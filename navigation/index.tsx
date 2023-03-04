@@ -4,7 +4,6 @@
  *
  */
 import { FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
@@ -17,7 +16,7 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import Home from '../screens/Home';
 import Play from '../screens/Play';
 import Store from '../screens/Store';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import { RootStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import Credits from '../screens/Credits';
 import Leaderboard from '../screens/Leaderboard';
@@ -75,7 +74,9 @@ function RootNavigator() {
         name="Play"
         component={Play}
         options={() => ({
-          orientation: "landscape"
+          orientation: "landscape",
+          gestureEnabled: false,
+          headerShown: false
         })}
 
       />
@@ -89,85 +90,4 @@ function RootNavigator() {
       </Stack.Group>
     </Stack.Navigator>
   );
-}
-
-
-
-// const Stack = createStackNavigator();
-
-// export const App = () => {
-//   return (
-//       <NavigationContainer>
-//         <Stack.Navigator initialRouteName="Home">
-//           <Stack.Screen
-//             name="Home"
-//             component={HomeScreen}
-//             options={{ title: "Home" }}
-//           />
-//           <Stack.Screen
-//             name="Accelerometer"
-//             component={AccelerometerScreen}
-//             options={{ title: "Accelerometer" }}
-//           />
-//         </Stack.Navigator>
-//       </NavigationContainer>
-//   );
-// };
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
-// const BottomTab = createBottomTabNavigator<RootTabParamList>();
-
-// function BottomTabNavigator() {
-//   const colorScheme = useColorScheme();
-
-//   return (
-//     <BottomTab.Navigator
-//       initialRouteName="TabOne"
-//       screenOptions={{
-//         tabBarActiveTintColor: Colors[colorScheme].tint,
-//       }}>
-//       <BottomTab.Screen
-//         name="TabOne"
-//         component={TabOneScreen}
-//         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-//           title: 'Tab One',
-//           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-//           headerRight: () => (
-//             <Pressable
-//               onPress={() => navigation.navigate('Modal')}
-//               style={({ pressed }) => ({
-//                 opacity: pressed ? 0.5 : 1,
-//               })}>
-//               <FontAwesome
-//                 name="info-circle"
-//                 size={25}
-//                 color={Colors[colorScheme].text}
-//                 style={{ marginRight: 15 }}
-//               />
-//             </Pressable>
-//           ),
-//         })}
-//       />
-//       <BottomTab.Screen
-//         name="TabTwo"
-//         component={TabTwoScreen}
-//         options={{
-//           title: 'Tab Two',
-//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-//         }}
-//       />
-//     </BottomTab.Navigator>
-//   );
-// }
-
-// /**
-//  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-//  */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
